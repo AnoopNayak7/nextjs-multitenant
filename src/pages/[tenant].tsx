@@ -3,15 +3,13 @@ import { GetServerSideProps } from 'next';
 import { loadTenantConfig } from './../utils/config';
 
 interface TenantProps {
-  tenantConfig: any; // Adjust the type according to your configuration
+  tenantConfig: any; 
 }
 
 const TenantPage = ({ tenantConfig }: TenantProps) => {
-  // Use the tenantConfig in your component
   return (
     <div>
       <h1 className={`text-[${tenantConfig.color}]`}>Welcome to {tenantConfig.name}</h1>
-      {/* Render the rest of your component */}
     </div>
   );
 };

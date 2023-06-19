@@ -6,7 +6,8 @@ interface TenantConfig {
   id: any,
   name: string,
   color: string,
-  subdomain: string
+  subdomain: string,
+  menudirection: string
 }
 
 export interface WithTenantConfigProps {
@@ -17,18 +18,16 @@ const withTenantConfig = (WrappedComponent: React.ComponentType<WithTenantConfig
   const WithTenantConfig: React.FC<WithTenantConfigProps> & {
     getServerSideProps: GetServerSideProps<WithTenantConfigProps>;
   } = (props) => {
-    // Access the tenantConfig from props and use it as needed
     const { tenantConfig } = props;
 
     return <WrappedComponent {...props} />;
   };
 
-  // Implement the server-side props loading
   WithTenantConfig.getServerSideProps = async (context: GetServerSidePropsContext) => {
     const { req } = context;
     const hostname = req.headers.host || '';
     const subdomain = hostname.split('.')[0];
-    const tenantConfig = loadTenantConfig(subdomain); // Load the configuration for the tenant
+    const tenantConfig = loadTenantConfig(subdomain);
 
     return {
       props: {

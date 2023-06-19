@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
-import { NextComponentType } from 'next';
 import { loadTenantConfig } from '../utils/config';
+import '../styles/globals.css'
 
 interface MyAppProps extends AppProps {
   tenantConfig: any; 
@@ -21,7 +21,7 @@ MyApp.getInitialProps = async (appContext: { Component: any; ctx: any; }) => {
   const hostname = req?.headers.host || '';
   let subdomain = hostname.split('.')[0];
 
-  if (process.env.NODE_ENV === 'development' && hostname === 'localhost:3000') {
+  if (process.env.NODE_ENV === 'development' && (hostname === 'smartlivin.com:3001' || hostname === 'localhost:3001')) {
     subdomain = 'jio';
   }
   const tenantConfig = loadTenantConfig(subdomain);

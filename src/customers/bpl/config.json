@@ -2,5 +2,6 @@
     "id": "bpl",
     "color": "#525FE1",
     "name": "BPL Group",
-    "subdomain": "bpl"
+    "subdomain": "bpl",
+    "menudirection": "horizontal"
 }
